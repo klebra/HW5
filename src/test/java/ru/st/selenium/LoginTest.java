@@ -1,9 +1,10 @@
 package ru.st.selenium;
 
 import org.testng.annotations.*;
-import static org.junit.Assert.*;
 
 import ru.st.selenium.model.User;
+
+import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends ru.st.selenium.pages.TestBase {
 

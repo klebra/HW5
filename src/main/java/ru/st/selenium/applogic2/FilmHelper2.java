@@ -4,6 +4,7 @@ import java.util.List;
 
 import ru.st.selenium.applogic.FilmHelper;
 import ru.st.selenium.model.Film;
+import ru.st.selenium.pages.InternalPage;
 
 public class FilmHelper2 extends DriverBasedHelper implements FilmHelper {
 
@@ -13,14 +14,18 @@ public class FilmHelper2 extends DriverBasedHelper implements FilmHelper {
 
   @Override
   public void create(Film film) {
-    // TODO Auto-generated method stub
-
+    pages.internalPage
+            .clickAddFilmButton().ensurePageLoaded()
+            .setTitleField(film.getTitle())
+            .setYearField(film.getYear())
+            .clickSubmitButton();
   }
 
   @Override
-  public void delete(Film film) {
-    // TODO Auto-generated method stub
-
+  public void delete() {
+     pages.internalPage
+            .clickOnNthFilm(0).ensurePageLoaded()
+            .clickRemoveFilmButton();
   }
 
   @Override
@@ -28,5 +33,11 @@ public class FilmHelper2 extends DriverBasedHelper implements FilmHelper {
     // TODO Auto-generated method stub
     return null;
   }
+
+    @Override
+    public int getSizeOfList() {
+        return pages.internalPage
+                .listOfFilms().size();
+    }
 
 }
